@@ -36,12 +36,18 @@ def create_page(data:dict):
     print(res.status_code)
     return res
 
-url = "Test Url 3"
-title = "Test Title 3"
-published_date = datetime.now().astimezone(timezone.utc).isoformat()
-data = {
-    "URL": {"title": [{"text": {"content": url}}]},
-    "Title": {"rich_text": [{"text": {"content": title}}]},
-    "Published": {"date": {"start": published_date, "end": None}}
-}
-create_page(data)
+def update_page(page_id: str, data: dict):
+    url = f"https://api.notion.com/v1/pages/{page_id}"
+
+    payload = {"properties": data}
+
+    res = requests.patch(url, headers=headers, json=payload)
+    print(res.status_code)
+    return res
+
+page_id = "7e9ccfba-5a53-4d76-832e-6085783e93f0"
+
+title = "Update Title"
+update_data = {"Title": {"rich_text": [{"text": {"content": title}}]}}
+
+update_page(page_id, update_data)
