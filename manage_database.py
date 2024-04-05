@@ -27,13 +27,21 @@ def get_pages():
     results = data["results"]
     return results
 
-# test get_pages
-pages = get_pages()
-for page in pages:
-    page_id = page["id"]
-    props = page["properties"]
-    url = props["URL"]["title"][0]["text"]["content"]
-    title = props["Title"]["rich_text"][0]["text"]["content"]
-    published = props["Published"]["date"]["start"]
-    published = datetime.fromisoformat(published)
-    print(url, title, published)
+def create_page(data:dict):
+    create_url = "https://api.notion.com/v1/pages"
+
+    payload = {"parent": {"database_id": DATABASE_ID}, "properties": data}
+
+    res = requests.post(create_url, headers=headers, json=payload)
+    print(res.status_code)
+    return res
+
+url = "Test Url 3"
+title = "Test Title 3"
+published_date = datetime.now().astimezone(timezone.utc).isoformat()
+data = {
+    "URL": {"title": [{"text": {"content": url}}]},
+    "Title": {"rich_text": [{"text": {"content": title}}]},
+    "Published": {"date": {"start": published_date, "end": None}}
+}
+create_page(data)
