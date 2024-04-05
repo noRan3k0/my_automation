@@ -45,9 +45,15 @@ def update_page(page_id: str, data: dict):
     print(res.status_code)
     return res
 
-page_id = "7e9ccfba-5a53-4d76-832e-6085783e93f0"
+def delete_page(page_id: str):
+    url = f"https://api.notion.com/v1/pages/{page_id}"
 
-title = "Update Title"
-update_data = {"Title": {"rich_text": [{"text": {"content": title}}]}}
+    payload = {"archived": True}
 
-update_page(page_id, update_data)
+    res = requests.patch(url, headers=headers, json=payload)
+    print(res.status_code)
+    return res
+
+page_id = "a294d995-5b5b-4690-8387-18ac67cd8ca3"
+
+delete_page(page_id)
