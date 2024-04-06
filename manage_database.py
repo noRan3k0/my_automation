@@ -27,10 +27,10 @@ def get_pages():
     results = data["results"]
     return results
 
-def create_page(data:dict):
+def create_page(data:dict, child_data:dict):
     create_url = "https://api.notion.com/v1/pages"
 
-    payload = {"parent": {"database_id": DATABASE_ID}, "properties": data}
+    payload = {"parent": {"database_id": DATABASE_ID}, "properties": data, "children": child_data}
 
     res = requests.post(create_url, headers=headers, json=payload)
     print(res.status_code)
@@ -54,6 +54,15 @@ def delete_page(page_id: str):
     print(res.status_code)
     return res
 
-page_id = "a294d995-5b5b-4690-8387-18ac67cd8ca3"
-
-delete_page(page_id)
+name = "name"
+title = "Test"
+race_date = datetime.now().astimezone(timezone.utc).isoformat()
+data = {
+    "Race": {"title": [{"text": {"content": name}}]},
+    "RaceDate": {"date": {"start": race_date, "end": None}}
+}
+child_data = {
+    "heading_1": {"rich_text": [{"text": {"content": "この言葉は見えているか！"}}]}
+}
+create_page(data, child_data)
+#get_pages()
