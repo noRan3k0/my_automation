@@ -82,23 +82,10 @@ def get_pages_data():
     return results
 
 # ページにブロックを追加する。
-def create_blocks():
+def create_blocks(data: dict):
     block_url = f"https://api.notion.com/v1/blocks/{PAGE_ID}/children"
 
-    payload = {
-        "children": [
-            {
-                "heading_2": {
-                    "rich_text": [{"text": {"content": "Lacinato kale"} }]
-                }
-            },
-            {
-                "heading_1": {
-                    "rich_text": [{"text": {"content": "fah;jgl:hnao"}}]
-                }
-            }
-        ]
-    }
+    payload = {"children": data}
 
     res = requests.patch(block_url, headers=headers, json=payload)
     print(res.status_code)
@@ -111,5 +98,25 @@ data = {
     "Race": {"title": [{"text": {"content": name}}]},
     "RaceDate": {"date": {"start": race_date, "end": None}}
 }
-create_blocks()
-#get_pages_data()
+
+# こいつはリストじゃなきゃいけねえ。
+block_data = [
+	{
+	    "heading_1": {
+	        "rich_text": [{"text": {"content": "Leg_assessment"} }]
+	    }
+	},
+	{
+	    "heading_2": {
+	        "rich_text": [{"text": {"content": "leg_1"}}],
+	        "is_toggleable": True
+	    }
+	},
+    {
+        "table_of_contents": {
+            "color": "default"
+        }
+    }
+]
+
+create_blocks(block_data)
