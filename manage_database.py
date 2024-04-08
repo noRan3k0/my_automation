@@ -67,19 +67,18 @@ def get_pages_data():
     
     page_response = requests.get(page_url, headers=headers)
     page_result = page_response.json()
-    format_page_result = json.dumps(page_result, indent=2, ensure_ascii=False)
+
+    with open('page_result.json', 'w', encoding='utf-8') as f:
+        json.dump(page_result, f, ensure_ascii=False, indent=4)
+    print("page_result: " + str(page_response.status_code))
 
     block_response = requests.get(block_url, headers=headers)
     block_result = block_response.json()
-    format_block_result = json.dumps(block_result, indent=2, ensure_ascii=False)
 
-    print(page_result)
-    print(format_page_result)
-    print(page_response.status_code)
-    print("==================================================")
-    print(block_result)
-    print(format_block_result)
-    print(block_response.status_code)
+    with open('blocks_result.json', 'w', encoding='utf-8') as f:
+        json.dump(block_result, f, ensure_ascii=False, indent=4)
+    print("page_result: " + str(block_response.status_code))
+
     return
 
 name = "name"
