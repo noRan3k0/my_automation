@@ -64,7 +64,6 @@ def get_pages_data():
     page_url = f"https://api.notion.com/v1/pages/{PAGE_ID}"
     block_url = f"https://api.notion.com/v1/blocks/{PAGE_ID}/children"
 
-    
     page_response = requests.get(page_url, headers=headers)
     page_result = page_response.json()
 
@@ -81,6 +80,25 @@ def get_pages_data():
 
     return
 
+# ページにブロックを追加する。
+def create_blocks():
+    block_url = f"https://api.notion.com/v1/blocks/{PAGE_ID}/children"
+
+    payload = {
+        "children": [
+		{
+			"object": "block",
+			"type": "heading_2",
+			"heading_2": {
+				"rich_text": [{ "type": "text", "text": { "content": "Lacinato kale" } }]
+			}
+		}]
+    }
+
+    res = requests.post(block_url, headers=headers, json=payload)
+    print(res.status_code)
+    return res
+
 name = "name"
 title = "Test"
 race_date = datetime.now().astimezone(timezone.utc).isoformat()
@@ -88,9 +106,4 @@ data = {
     "Race": {"title": [{"text": {"content": name}}]},
     "RaceDate": {"date": {"start": race_date, "end": None}}
 }
-child_data = {
-    "heading_1": {"rich_text": [{"text": {"content": "この言葉は見えているか！"}}]}
-}
-#create_page(data)
-#get_pages()
-get_pages_data()
+create_blocks()
