@@ -60,8 +60,27 @@ def delete_page(page_id: str):
     return res
 
 # ページから情報を取得
+def get_pages_data():
+    page_url = f"https://api.notion.com/v1/pages/{PAGE_ID}"
+    block_url = f"https://api.notion.com/v1/blocks/{PAGE_ID}/children"
 
+    
+    page_response = requests.get(page_url, headers=headers)
+    page_result = page_response.json()
+    format_page_result = json.dumps(page_result, indent=2, ensure_ascii=False)
 
+    block_response = requests.get(block_url, headers=headers)
+    block_result = block_response.json()
+    format_block_result = json.dumps(block_result, indent=2, ensure_ascii=False)
+
+    print(page_result)
+    print(format_page_result)
+    print(page_response.status_code)
+    print("==================================================")
+    print(block_result)
+    print(format_block_result)
+    print(block_response.status_code)
+    return
 
 name = "name"
 title = "Test"
@@ -73,5 +92,6 @@ data = {
 child_data = {
     "heading_1": {"rich_text": [{"text": {"content": "この言葉は見えているか！"}}]}
 }
-create_page(data)
+#create_page(data)
 #get_pages()
+get_pages_data()
