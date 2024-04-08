@@ -1,8 +1,10 @@
 # setting files
-my_settings.txt
 settings.py
 
 __pycache__/
 
 # json files
 *.json
+
+# text files
+*.txt
