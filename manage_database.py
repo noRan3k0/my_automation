@@ -73,12 +73,13 @@ def get_pages_data():
 
     block_response = requests.get(block_url, headers=headers)
     block_result = block_response.json()
-
     with open('blocks_result.json', 'w', encoding='utf-8') as f:
         json.dump(block_result, f, ensure_ascii=False, indent=4)
     print("page_result: " + str(block_response.status_code))
 
-    return
+    #print(block_result.keys())
+    results = block_result["results"]
+    return results
 
 # ページにブロックを追加する。
 def create_blocks():
@@ -86,16 +87,20 @@ def create_blocks():
 
     payload = {
         "children": [
-		{
-			"object": "block",
-			"type": "heading_2",
-			"heading_2": {
-				"rich_text": [{ "type": "text", "text": { "content": "Lacinato kale" } }]
-			}
-		}]
+            {
+                "heading_2": {
+                    "rich_text": [{"text": {"content": "Lacinato kale"} }]
+                }
+            },
+            {
+                "heading_1": {
+                    "rich_text": [{"text": {"content": "fah;jgl:hnao"}}]
+                }
+            }
+        ]
     }
 
-    res = requests.post(block_url, headers=headers, json=payload)
+    res = requests.patch(block_url, headers=headers, json=payload)
     print(res.status_code)
     return res
 
@@ -107,3 +112,4 @@ data = {
     "RaceDate": {"date": {"start": race_date, "end": None}}
 }
 create_blocks()
+#get_pages_data()
