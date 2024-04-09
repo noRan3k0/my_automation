@@ -1,9 +1,10 @@
 data = []
 tableOfBlock = {
-        "table_of_contents": {
-            "color": "default"
-        }
+    "table_of_contents": {
+        "color": "default"
     }
+}
+
 {
     "heading_1": {
         "rich_text": [{"text": {"content": "Leg_assessment"} }]
@@ -15,10 +16,6 @@ tableOfBlock = {
         "is_toggleable": True
     }
 }
-
-
-    
-
 
 # data作成
 data.append(tableOfBlock)
