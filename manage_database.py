@@ -83,8 +83,8 @@ def get_pages_data():
     return results
 
 # ページにブロックを追加する。
-def create_blocks(data: dict):
-    block_url = f"https://api.notion.com/v1/blocks/{PAGE_ID}/children"
+def create_blocks(data: dict, page_id: str):
+    block_url = f"https://api.notion.com/v1/blocks/{page_id}/children"
 
     payload = {"children": data}
 
@@ -96,11 +96,19 @@ if __name__ == "__main__":
     name = "name"
     title = "Test"
     race_date = datetime.now().astimezone(timezone.utc).isoformat()
-    data = {
+    page_data = {
         "Race": {"title": [{"text": {"content": name}}]},
         "RaceDate": {"date": {"start": race_date, "end": None}}
     }
-
+    to_id = input("url :")
+    to_id = to_id.replace("https://www.notion.so/", "")
+    if ("test-url-" in to_id):
+        to_id = to_id.replace("test-url-", "")
+    to_id = to_id.replace("?pvs=4", "")
+    print(to_id)
     # ブロック作成部分
     test_data = make_data.add_data()    # こいつはリストじゃなきゃいけねえ。
-    create_blocks(test_data)
+    create_blocks(test_data, to_id)
+    #https://www.notion.so/test-url-7e9ccfba5a534d76832e6085783e93f0?pvs=4
+    
+    
