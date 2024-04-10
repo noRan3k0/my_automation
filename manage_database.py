@@ -92,16 +92,15 @@ def create_blocks(data: dict):
     print(res.status_code)
     return res
 
-name = "name"
-title = "Test"
-race_date = datetime.now().astimezone(timezone.utc).isoformat()
-data = {
-    "Race": {"title": [{"text": {"content": name}}]},
-    "RaceDate": {"date": {"start": race_date, "end": None}}
-}
+if __name__ == "__main__":
+    name = "name"
+    title = "Test"
+    race_date = datetime.now().astimezone(timezone.utc).isoformat()
+    data = {
+        "Race": {"title": [{"text": {"content": name}}]},
+        "RaceDate": {"date": {"start": race_date, "end": None}}
+    }
 
-# こいつはリストじゃなきゃいけねえ。
-test_data = make_data.made_data
-
-create_blocks(test_data)
-#get_pages_data()
+    # ブロック作成部分
+    test_data = make_data.add_data()    # こいつはリストじゃなきゃいけねえ。
+    create_blocks(test_data)

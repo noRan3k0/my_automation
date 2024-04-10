@@ -1,10 +1,3 @@
-data = [
-    
-]
-
-num = 1
-leg_num = str(num)
-
 made_data = [
     # head contents
     {"table_of_contents": {"color": "default"}},
@@ -31,13 +24,22 @@ made_data = [
 	{"heading_1": {"rich_text": [{"text": {"content": "Leg Assessment"}}]}}
 ]
 
-# make toggle
-for i in range(10):
-    if i == 0:
-        text = "○->1"
-    elif i == 9:
-        text = "9->◎"
-    else:
-        text = str(i) + "->" + str(i+1)
-    add_data = {"heading_2": {"rich_text": [{"text": {"content": text}}], "is_toggleable": True}}
-    made_data.append(add_data)
+def main():
+    pass
+
+def add_data():
+    # make toggle
+    for i in range(10):
+        if i == 0:
+            text = "○->1"
+        elif i == 9:
+            text = "9->◎"
+        else:
+            text = str(i) + "->" + str(i+1)
+        add_data = {"heading_2": {"rich_text": [{"text": {"content": text}}], "is_toggleable": True}}
+        made_data.append(add_data)
+    
+    return made_data
+
+if __name__ == "__main__":
+    main()
