@@ -93,6 +93,7 @@ def create_blocks(data: dict, page_id: str):
     return res
 
 if __name__ == "__main__":
+    """
     name = "name"
     title = "Test"
     race_date = datetime.now().astimezone(timezone.utc).isoformat()
@@ -106,9 +107,8 @@ if __name__ == "__main__":
         to_id = to_id.replace("test-url-", "")
     to_id = to_id.replace("?pvs=4", "")
     print(to_id)
+    """
     # ブロック作成部分
     test_data = make_data.add_data()    # こいつはリストじゃなきゃいけねえ。
-    create_blocks(test_data, to_id)
+    create_blocks(test_data, settings.page_id)
     #https://www.notion.so/test-url-7e9ccfba5a534d76832e6085783e93f0?pvs=4
-    
-    
