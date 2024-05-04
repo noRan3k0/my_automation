@@ -14,10 +14,10 @@ made_data = [
                 {"table_row": {"cells": [[{"text": {"content": "テレイン"}}], [{"text": {"content": "where"}}]]}},
                 {"table_row": {"cells": [[{"text": {"content": "距離"}}], [{"text": {"content": "6km"}}]]}},
                 {"table_row": {"cells": [[{"text": {"content": "アップ"}}], [{"text": {"content": "300m"}}]]}},
-                {"table_row": {"cells": [[{"text": {"content": "タイム"}}], [{"text": {"content": "いくらか"}}]]}},
-                {"table_row": {"cells": [[{"text": {"content": "巡航"}}], [{"text": {"content": "いくらか"}}]]}},
-                {"table_row": {"cells": [[{"text": {"content": "ミス率"}}], [{"text": {"content": "めっちゃ%"}}]]}},
-                {"table_row": {"cells": [[{"text": {"content": "ミスタイム"}}], [{"text": {"content": "+18915730"}}]]}}
+                {"table_row": {"cells": [[{"text": {"content": "タイム"}}], [{"text": {"content": gst.result_text}}]]}},
+                {"table_row": {"cells": [[{"text": {"content": "巡航"}}], [{"text": {"content": gst.speed_text}}]]}},
+                {"table_row": {"cells": [[{"text": {"content": "ミス率"}}], [{"text": {"content": gst.lossRate_text}}]]}},
+                {"table_row": {"cells": [[{"text": {"content": "ミスタイム"}}], [{"text": {"content": gst.totalLossTime_text}}]]}}
             ]
         }
     },
@@ -26,21 +26,26 @@ made_data = [
 	{"heading_1": {"rich_text": [{"text": {"content": "Leg Assessment"}}]}}
 ]
 
+leg_num = len(gst.lapTime_list)
+
 def main():
     pass
 
 def add_data():
     # make toggle
-    for i in range(10):
+    for i in range(leg_num):
         if i == 0:
             text = "○->1"
-        elif i == 9:
-            text = "9->◎"
+        elif i == leg_num-1:
+            text = str(leg_num-1) + "->◎"
         else:
             text = str(i) + "->" + str(i+1)
-        add_data = {"heading_2": {"rich_text": [{"text": {"content": text}}], "is_toggleable": True}}
-        made_data.append(add_data)
-    
+        add_header_data = {"heading_2": {"rich_text": [{"text": {"content": text}}], "is_toggleable": True}}
+        made_data.append(add_header_data)
+        add_legTime_data = {"paragraph": {"rich_text": [{"text": {"content": gst.lapTime_list[i]}}]}}
+        made_data.append(add_legTime_data)
+        add_legLossTime_data = {"paragraph": {"rich_text": [{"text": {"content": gst.legLossTime_list[i]}}]}}
+        made_data.append(add_legLossTime_data)
     return made_data
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ import json
 from datetime import datetime, timezone
 
 import settings
-import make_data
+import make_data,get_site_data
 
 NOTION_API_TOKEN = settings.api_key
 DATABASE_ID = settings.db_id
