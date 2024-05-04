@@ -18,11 +18,17 @@ try:
         script_tag_string = str(script_tag)
 
     # 'runnerData['runnerName'] = '高橋 光';' と 'runnerList.push(runnerData);' の間のテキストを抽出する正規表現パターン
-    pattern = r"runnerData\['runnerName'\] = '高橋 光';(.*?)runnerList\.push\(runnerData\);"
+    large_pattern = r"runnerData\['runnerName'\] = '高橋 光';(.*?)runnerList\.push\(runnerData\);"
 
-    matches = re.findall(pattern, script_tag_string, re.DOTALL)
-
-    for match in matches:
-        print(match)
+    matches = re.findall(large_pattern, script_tag_string, re.DOTALL)
 except:
     print("Error: check data")
+
+result_pattern = r"runnerData\['result'\] = \'(.*?)\';"
+result_matchs = re.findall(result_pattern, str(matches), re.DOTALL)
+print(result_matchs)
+print(result_matchs[0])
+print(type(result_matchs[0]))
+
+#for match in matches:
+#    print(match)

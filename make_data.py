@@ -1,3 +1,5 @@
+import get_site_data as gst
+
 made_data = [
     # head contents
     {"table_of_contents": {"color": "default"}},
