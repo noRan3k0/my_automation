@@ -42,9 +42,9 @@ def add_data():
             text = str(i) + "->" + str(i+1)
         add_header_data = {"heading_2": {"rich_text": [{"text": {"content": text}}], "is_toggleable": True}}
         made_data.append(add_header_data)
-        add_legTime_data = {"paragraph": {"rich_text": [{"text": {"content": gst.lapTime_list[i]}}]}}
+        add_legTime_data = {"paragraph": {"rich_text": [{"text": {"content": "ラップタイム: " + gst.lapTime_list[i]}}]}}
         made_data.append(add_legTime_data)
-        add_legLossTime_data = {"paragraph": {"rich_text": [{"text": {"content": gst.legLossTime_list[i]}}]}}
+        add_legLossTime_data = {"paragraph": {"rich_text": [{"text": {"content": "ミスタイム　: " + gst.legLossTime_list[i]}}]}}
         made_data.append(add_legLossTime_data)
     return made_data
 

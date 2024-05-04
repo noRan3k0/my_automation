@@ -11,7 +11,7 @@ try:
     soup = BeautifulSoup(req.text, "html.parser")
 except:
     print("Error: get URL")
-print(req.status_code)
+print("get_site_data: " + req.status_code)
 
 try:
     for script_tag in enumerate(soup.findAll('script')):
@@ -78,7 +78,3 @@ legLossTime_list = list(legLossTime_matchs[0].split(","))
 legSpeed_pattern = r"runnerData\['legSpeed'\] = \[(.*?)\];"
 legSpeed_matchs = re.findall(legSpeed_pattern, str(matches), re.DOTALL)
 legSpeed_list = list(legSpeed_matchs[0].split(","))
-
-
-#for match in matches:
-#    print(match)

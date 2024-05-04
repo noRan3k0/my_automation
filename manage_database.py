@@ -89,7 +89,7 @@ def create_blocks(data: dict, page_id: str):
     payload = {"children": data}
 
     res = requests.patch(block_url, headers=headers, json=payload)
-    print(res.status_code)
+    print("create.blocks" + res.status_code)
     return res
 
 if __name__ == "__main__":
