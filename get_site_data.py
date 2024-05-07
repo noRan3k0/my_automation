@@ -57,7 +57,6 @@ idealTime_text = idealTime_matchs[0]
 lapTime_pattern = r"runnerData\['lapTime'\] = \[(.*?)\];"
 lapTime_matchs = re.findall(lapTime_pattern, str(matches), re.DOTALL)
 lapTime_list = list(lapTime_matchs[0].split(","))
-#print(lapTime_list)
 
 lapRank_pattern = r"runnerData\['lapRank'\] = \[(.*?)\];"
 lapRank_matchs = re.findall(lapRank_pattern, str(matches), re.DOTALL)

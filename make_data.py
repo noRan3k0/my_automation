@@ -49,4 +49,4 @@ def add_data():
     return made_data
 
 if __name__ == "__main__":
-    main()
+    print("This is make_data.")
