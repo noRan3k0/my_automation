@@ -1,6 +1,5 @@
 import json
 
-
 def extract_json():
     path = 'db.json'
 

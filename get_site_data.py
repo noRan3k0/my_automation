@@ -1,14 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import settings
 
 # 取得対象ページのURL
-url = "https://mulka2.com/lapcenter/lapcombat2/split-list.jsp?event=8292&file=1&class=0"
+URL = settings.requests_url
 
 def get_results():
     # GET request
     try:
-        req = requests.get(url)
+        req = requests.get(URL)
         req.encoding = req.apparent_encoding
         soup = BeautifulSoup(req.text, "html.parser")
     except:
