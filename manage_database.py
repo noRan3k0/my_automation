@@ -35,7 +35,7 @@ def create_page(data:dict):
     payload = {"parent": {"database_id": DATABASE_ID}, "properties": data}
 
     res = requests.post(create_url, headers=headers, json=payload)
-    print("create_page: " + res.status_code)
+    print("create_page: " + str(res.status_code))
     return res
 
 # データベース上のページを更新
@@ -87,7 +87,7 @@ def create_blocks(data: dict, page_id: str):
     payload = {"children": data}
 
     res = requests.patch(block_url, headers=headers, json=payload)
-    print("create.blocks: " + res.status_code)
+    print("create.blocks: " + str(res.status_code))
     return res
 
 if __name__ == "__main__":
